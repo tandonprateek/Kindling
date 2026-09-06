@@ -1,0 +1,303 @@
+{
+  "generatedAt": "2026-09-06T20:22:28.656Z",
+  "count": 27,
+  "events": [
+    {
+      "source": "fvrl",
+      "title": "Open Gaming",
+      "location": "Clearbrook Library",
+      "regionLabel": "Fraser Valley — Clearbrook",
+      "region": "fraser-valley",
+      "dateText": "Sun, Sep 06th 1:00 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/19298",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Sunday Scavenger Hunts",
+      "location": "Abbotsford Community Library",
+      "regionLabel": "Fraser Valley — Abbotsford Community",
+      "region": "fraser-valley",
+      "dateText": "Sun, Sep 06th 1:00 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/24168",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Common Threads Knitting Group",
+      "location": "Sardis Library",
+      "regionLabel": "Fraser Valley — Sardis",
+      "region": "fraser-valley",
+      "dateText": "Sun, Sep 06th 1:30 pm to 3:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/22516",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Maple Ridge Public Library",
+      "regionLabel": "Fraser Valley — Maple Ridge Public",
+      "region": "lower-mainland",
+      "dateText": "Sun, Sep 06th 2:00 pm to 2:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/22532",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "English Conversation Circles",
+      "location": "Muriel Arnason Library",
+      "regionLabel": "Fraser Valley — Muriel Arnason",
+      "region": "lower-mainland",
+      "dateText": "Sun, Sep 06th 2:00 pm to 3:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/23375",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Knit 'N Stitch",
+      "location": "George Mackie Library",
+      "regionLabel": "Fraser Valley — George Mackie",
+      "region": "fraser-valley",
+      "dateText": "Sun, Sep 06th 2:00 pm to 4:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/23287",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Chess Club",
+      "location": "Mission Library",
+      "regionLabel": "Fraser Valley — Mission",
+      "region": "fraser-valley",
+      "dateText": "Sun, Sep 06th 2:00 pm to 4:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/22788",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Imagination Station",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Sun, Sep 06th 2:00 pm to 3:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/23812",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Toastmasters by the Sea",
+      "location": "White Rock Library",
+      "regionLabel": "Fraser Valley — White Rock",
+      "region": "lower-mainland",
+      "dateText": "Sun, Sep 06th 3:00 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/15504",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Tween Dungeons & Dragons",
+      "location": "Maple Ridge Public Library",
+      "regionLabel": "Fraser Valley — Maple Ridge Public",
+      "region": "lower-mainland",
+      "dateText": "Sun, Sep 06th 3:00 pm to 4:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/22650",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Knitting Club",
+      "location": "Murrayville Library",
+      "regionLabel": "Fraser Valley — Murrayville",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 9:30 am to 11:30 am",
+      "url": "https://www.fvrl.bc.ca/events/21060",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "Pitt Meadows Public Library",
+      "regionLabel": "Fraser Valley — Pitt Meadows Public",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 9:30 am to 10:00 am",
+      "url": "https://www.fvrl.bc.ca/events/21760",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Family Place Storytime",
+      "location": "Sardis Library",
+      "regionLabel": "Fraser Valley — Sardis",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 9:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/22594",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Knit & Stitch",
+      "location": "White Rock Library",
+      "regionLabel": "Fraser Valley — White Rock",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 10:00 am to 12:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/15679",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Maple Ridge Public Library",
+      "regionLabel": "Fraser Valley — Maple Ridge Public",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 10:00 am to 10:30 am",
+      "url": "https://www.fvrl.bc.ca/events/22486",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Muriel Arnason Library",
+      "regionLabel": "Fraser Valley — Muriel Arnason",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 10:00 am to 10:30 am",
+      "url": "https://www.fvrl.bc.ca/events/21438",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "Murrayville Library",
+      "regionLabel": "Fraser Valley — Murrayville",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 10:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/20971",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "Dean Drysdale Library",
+      "regionLabel": "Fraser Valley — Dean Drysdale",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 10:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/20847",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Mission Library",
+      "regionLabel": "Fraser Valley — Mission",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 10:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/22912",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "George Mackie Library",
+      "regionLabel": "Fraser Valley — George Mackie",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 10:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/24693",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 10:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/24360",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Storytime",
+      "location": "Terry Fox Library",
+      "regionLabel": "Fraser Valley — Terry Fox",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 11:00 am to 11:30 am",
+      "url": "https://www.fvrl.bc.ca/events/21989",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Toddler Stay and Play",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 11:00 am to 12:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/24438",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Scrabble Club",
+      "location": "White Rock Library",
+      "regionLabel": "Fraser Valley — White Rock",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 12:30 pm to 2:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/15730",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "Clearbrook Library",
+      "regionLabel": "Fraser Valley — Clearbrook",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 1:00 pm to 1:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/20600",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Hope BC Knitting & Stitches Club",
+      "location": "Hope Library",
+      "regionLabel": "Fraser Valley — Hope",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 1:00 pm to 3:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/23132",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Drop-In Tech Help",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 1:30 pm to 2:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/24516",
+      "free": true,
+      "tag": "Free"
+    }
+  ]
+}
