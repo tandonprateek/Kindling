@@ -1,0 +1,75 @@
+name: Scrape events and deploy site
+
+on:
+  schedule:
+    # 13:00 UTC = 6:00 AM Pacific (adjust if you want a different time —
+    # BC is UTC-8 in winter, UTC-7 in summer/DST)
+    - cron: '0 13 * * *'
+  workflow_dispatch: {}   # lets you trigger it manually from the Actions tab
+  push:
+    branches: [main]       # also redeploy whenever you push site changes
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install scraper dependencies
+        working-directory: scraper
+        run: npm install
+
+      - name: Run scrapers and write events.json
+        working-directory: scraper
+        run: node merge.js
+        continue-on-error: true
+        # continue-on-error so a scraper hiccup doesn't take the whole site
+        # down — worst case, site redeploys with yesterday's events.json
+        # still present from the last successful run (see next step).
+
+      - name: Verify events.json exists (fallback warning only)
+        run: |
+          if [ ! -f site/events.json ]; then
+            echo "::warning::events.json was not generated this run — site will deploy without fresh event data."
+          fi
+
+      - name: Commit refreshed events.json back to repo
+        if: success()
+        run: |
+          git config user.name "sasquatch-bot"
+          git config user.email "actions@github.com"
+          git add site/events.json
+          git diff --staged --quiet || git commit -m "Refresh events.json $(date -u +%Y-%m-%d)"
+          git push
+        continue-on-error: true
+        # continue-on-error here too: if this push races with another commit,
+        # we don't want it to block the deploy below — the freshly-scraped
+        # file still deploys this run either way, it just might not be
+        # committed back until the next successful run.
+
+      - name: Set up GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site as Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

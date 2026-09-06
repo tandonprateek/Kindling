@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kindling — Family Events Across BC</title>
+<style>
+  :root {
+    --paper: #FBF7EE;
+    --ink: #1F2A24;
+    --moss: #3D5A44;
+    --moss-deep: #2A3F30;
+    --clay: #C4693B;
+    --line: #D9D0BB;
+    --card: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    line-height: 1.5;
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .brand .mark {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .brand .name {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--moss-deep);
+    letter-spacing: 0.01em;
+  }
+
+  h1 {
+    font-size: 40px;
+    line-height: 1.12;
+    font-weight: 500;
+    max-width: 16ch;
+    color: var(--moss-deep);
+  }
+
+  .sub {
+    margin-top: 16px;
+    font-size: 18px;
+    max-width: 48ch;
+    color: #4A5750;
+  }
+
+  .signup {
+    margin-top: 32px;
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    flex-wrap: wrap;
+  }
+
+  .signup input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 13px 16px;
+    font-size: 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 3px;
+    background: var(--card);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+  }
+
+  .signup input[type="email"]:focus {
+    outline: none;
+    border-color: var(--moss);
+  }
+
+  .signup button {
+    padding: 13px 22px;
+    font-size: 16px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--clay);
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .signup button:hover { background: #B05B31; }
+
+  .microcopy {
+    margin-top: 10px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #7A8279;
+  }
+
+  .confirm {
+    margin-top: 16px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    color: var(--moss);
+    display: none;
+    font-weight: 600;
+  }
+
+  main { padding: 44px 0 60px; }
+
+  .region-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  .region-btn {
+    padding: 8px 14px;
+    font-size: 13.5px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    color: var(--moss-deep);
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .region-btn.active {
+    background: var(--moss-deep);
+    border-color: var(--moss-deep);
+    color: var(--paper);
+  }
+
+  .weekend-label {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: var(--moss);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+  }
+
+  .event {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 18px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .event:first-of-type { padding-top: 0; }
+
+  .date-block {
+    background: var(--moss-deep);
+    color: var(--paper);
+    border-radius: 4px;
+    padding: 10px 0;
+    text-align: center;
+    height: fit-content;
+  }
+
+  .date-block .day {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+
+  .date-block .num {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .event-title {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--moss-deep);
+    margin-bottom: 4px;
+  }
+
+  .event-meta {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #6B7A70;
+    margin-bottom: 6px;
+  }
+
+  .event-meta span:not(:last-child)::after {
+    content: "·";
+    margin: 0 6px;
+    color: var(--line);
+  }
+
+  .event-desc {
+    font-size: 15.5px;
+    color: #3A423C;
+    max-width: 52ch;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: #EAF0E7;
+    color: var(--moss-deep);
+    margin-top: 8px;
+  }
+
+  .tag.free { background: #FBEADE; color: var(--clay); }
+
+  .region-flag {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    color: #93998F;
+    margin-top: 2px;
+  }
+
+  .empty-state {
+    padding: 30px 0;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: #7A8279;
+    font-size: 15px;
+  }
+
+  footer {
+    padding: 32px 0 60px;
+    border-top: 1px solid var(--line);
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    color: #8A9088;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 30px; }
+    .event { grid-template-columns: 60px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 3c2.5 4 1 6-0.5 8.5C14.5 14 13 16 13 19a5 5 0 0010 0c0-2-1-3.5-2-5 1.5 1 2.5 2.5 2.5 4.5a6.5 6.5 0 01-13 0C10.5 13 14.5 9 17 3z" fill="#C4693B"/>
+        <path d="M17 13c1.2 2 0.6 3-0.2 4.2C16.1 18.3 15.5 19.3 15.5 21a2.5 2.5 0 005 0c0-1.3-0.6-2.2-1.2-3.1 0.8 0.5 1.4 1.3 1.4 2.5a3.5 3.5 0 01-7 0c0-3.4 2.5-5.5 3.3-7.4z" fill="#F0A05C"/>
+      </svg>
+      <span class="name">KINDLING</span>
+    </div>
+    <h1>Every kids' event across BC, one email a week.</h1>
+    <p class="sub">Pick your region — rec centre drop-ins, library story time, and community fairs pulled from a dozen sites and put in your inbox every Friday.</p>
+
+    <form class="signup" id="signupForm" onsubmit="handleSignup(event)">
+      <input type="email" id="emailInput" name="email" placeholder="you@email.com" required>
+      <button type="submit">Get Friday's list</button>
+    </form>
+    <p class="microcopy">Free. One email a week. No spam, unsubscribe anytime.</p>
+    <p class="confirm" id="confirmMsg">You're on the list — first roundup lands Friday.</p>
+  </header>
+
+  <main>
+    <div class="region-nav" id="regionNav">
+      <button class="region-btn active" data-region="all">All BC</button>
+      <button class="region-btn" data-region="lower-mainland">Lower Mainland</button>
+      <button class="region-btn" data-region="fraser-valley">Fraser Valley</button>
+      <button class="region-btn" data-region="vancouver-island">Vancouver Island</button>
+      <button class="region-btn" data-region="okanagan">Okanagan / Interior</button>
+      <button class="region-btn" data-region="northern-bc">Northern BC</button>
+    </div>
+
+    <div class="weekend-label" id="weekendLabel">LOADING EVENTS…</div>
+
+    <div id="eventList"></div>
+    <div class="empty-state" id="emptyState" style="display:none;"></div>
+  </main>
+
+  <footer id="siteFooter">
+    Sourced from municipal Parks &amp; Recreation departments and regional library systems across BC.
+  </footer>
+</div>
+
+<script>
+  // Live data lives in events.json, written by the scraper (see merge.js in
+  // the bc-events-scraper project). Deploy that file next to this page —
+  // same folder, same host — so this relative fetch can reach it.
+  const EVENTS_JSON_URL = 'events.json';
+
+  const eventList = document.getElementById('eventList');
+  const emptyState = document.getElementById('emptyState');
+  const weekendLabel = document.getElementById('weekendLabel');
+
+  let allEvents = [];
+  let currentRegion = 'all';
+
+  // Scraped events carry a free-text dateText like "Sun, Sep 06th 1:00 pm
+  // to 4:30 pm" rather than separate day/number fields — split it here so
+  // it still fits the existing date-block UI.
+  function splitDateText(dateText) {
+    if (!dateText) return { day: '—', num: '—', timeRange: null };
+    const match = dateText.match(/^([A-Za-z]{3}),\s[A-Za-z]{3}\s(\d{1,2})(?:st|nd|rd|th)?\s(.+)$/);
+    if (!match) return { day: '—', num: '—', timeRange: dateText };
+    return { day: match[1].toUpperCase(), num: match[2], timeRange: match[3] };
+  }
+
+  function normalizeEvent(e) {
+    // Handles both the scraper's schema (title/location/dateText/regionLabel)
+    // and falls back gracefully if a field is missing.
+    const { day, num, timeRange } = splitDateText(e.dateText);
+    const meta = [timeRange, e.location].filter(Boolean);
+    return {
+      region: e.region || 'lower-mainland',
+      regionLabel: e.regionLabel || e.location || '',
+      day, num,
+      title: e.title || 'Untitled event',
+      meta,
+      desc: e.desc || (e.url ? 'See the listing for full details.' : ''),
+      url: e.url || null,
+      tag: e.tag || (e.free ? 'Free' : 'See listing'),
+      free: !!e.free
+    };
+  }
+
+  function renderEvents(region) {
+    const filtered = region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
+    eventList.innerHTML = '';
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+      emptyState.textContent = allEvents.length === 0
+        ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
+        : 'No listed events for this region right now — check back after the next scrape.';
+      return;
+    }
+    emptyState.style.display = 'none';
+    filtered.forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'event';
+      const titleHtml = e.url
+        ? `<a href="${e.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${e.title}</a>`
+        : e.title;
+      div.innerHTML = `
+        <div class="date-block"><div class="day">${e.day}</div><div class="num">${e.num}</div></div>
+        <div>
+          <div class="event-title">${titleHtml}</div>
+          <div class="event-meta">${e.meta.map(m => `<span>${m}</span>`).join('')}</div>
+          <div class="event-desc">${e.desc}</div>
+          <span class="tag ${e.free ? 'free' : ''}">${e.tag}</span>
+          <div class="region-flag">${e.regionLabel}</div>
+        </div>
+      `;
+      eventList.appendChild(div);
+    });
+  }
+
+  async function loadEvents() {
+    try {
+      const res = await fetch(EVENTS_JSON_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`events.json returned ${res.status}`);
+      const data = await res.json();
+      allEvents = (data.events || []).map(normalizeEvent);
+      const generated = data.generatedAt ? new Date(data.generatedAt) : null;
+      weekendLabel.textContent = generated
+        ? `LIVE EVENTS — UPDATED ${generated.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' })}`
+        : 'LIVE EVENTS';
+    } catch (err) {
+      console.error('Failed to load events.json:', err);
+      allEvents = [];
+      weekendLabel.textContent = 'EVENTS UNAVAILABLE';
+    }
+    renderEvents(currentRegion);
+  }
+
+  document.getElementById('regionNav').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('region-btn')) return;
+    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentRegion = e.target.dataset.region;
+    renderEvents(currentRegion);
+  });
+
+  loadEvents();
+
+  // Replace YOUR_FORM_ID below with the ID Formspree gives you,
+  // e.g. https://formspree.io/f/abcd1234
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+
+  function handleSignup(e) {
+    e.preventDefault();
+    const email = document.getElementById('emailInput').value;
+    const button = e.target.querySelector('button');
+    button.disabled = true;
+    button.textContent = 'Signing up…';
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(e.target)
+    })
+      .then(res => {
+        if (res.ok) {
+          document.getElementById('confirmMsg').style.display = 'block';
+          document.querySelector('.signup').style.display = 'none';
+          document.querySelector('.microcopy').style.display = 'none';
+        } else {
+          button.disabled = false;
+          button.textContent = 'Get Friday\'s list';
+          alert('Something went wrong — please try again.');
+        }
+      })
+      .catch(() => {
+        button.disabled = false;
+        button.textContent = 'Get Friday\'s list';
+        alert('Something went wrong — please try again.');
+      });
+
+    console.log('Signup captured:', email);
+  }
+</script>
+
+</body>
+</html>
