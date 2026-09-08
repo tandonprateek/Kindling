@@ -108,6 +108,39 @@
 
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
+  /* ---------- Page grid (content + ad rail) ---------- */
+
+  .page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 760px) 300px;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .page .wrap { max-width: none; padding: 0; }
+
+  .ad-rail {
+    position: sticky;
+    top: 24px;
+    padding-top: 52px; /* roughly aligns ad top with hero content, not the page edge */
+  }
+
+  .ad-rail .ad-slot { margin: 0; }
+
+  @media (max-width: 900px) {
+    .page {
+      grid-template-columns: 1fr;
+    }
+    .ad-rail {
+      position: static;
+      padding-top: 0;
+      margin: 8px 0 40px;
+    }
+  }
+
   /* ---------- Header / hero ---------- */
 
   header.hero {
@@ -227,7 +260,7 @@
   /* ---------- Ad slots ---------- */
 
   .ad-slot {
-    margin: 8px 0 32px;
+    margin: 0;
     text-align: center;
   }
 
@@ -236,6 +269,19 @@
     color: #9AA79B;
     letter-spacing: 0.06em;
     margin-bottom: 6px;
+  }
+
+  /* Reserved space so the layout doesn't jump once a real ad loads in —
+     this placeholder box is visible now; swap dimensions to match
+     whatever ad unit size you create in AdSense. */
+  .ad-slot .adsbygoogle {
+    display: block;
+    width: 300px;
+    height: 250px;
+    background: var(--card);
+    border: 1.5px dashed var(--line);
+    border-radius: 10px;
+    margin: 0 auto;
   }
 
   /* ---------- Main / events ---------- */
@@ -434,6 +480,7 @@
 </head>
 <body>
 
+<div class="page">
 <div class="wrap">
   <header class="hero">
     <svg class="hero-field" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -460,19 +507,6 @@
     <p class="microcopy">Free. One email a week. No spam, unsubscribe anytime.</p>
     <p class="confirm" id="confirmMsg">You're on the list — first roundup lands Friday.</p>
   </header>
-
-  <!-- Ad slot: leaderboard, below hero. Blank until AdSense is approved
-       and the client/slot IDs above are filled in — see head comment. -->
-  <div class="ad-slot">
-    <div class="ad-label">ADVERTISEMENT</div>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
-         data-ad-slot="YOUR_AD_SLOT_ID"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
 
   <main>
     <h2 class="sr-only">Browse events by region</h2>
@@ -539,7 +573,26 @@
       </div>
     </section>
   </main>
+</div>
 
+<aside class="ad-rail" aria-label="Advertisement">
+  <!-- Ad slot: right-hand rail on desktop, stacks below content on mobile.
+       Deliberately kept out of the event list itself. Blank until AdSense
+       is approved and the client/slot IDs above are filled in. -->
+  <div class="ad-slot">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
+         data-ad-slot="YOUR_AD_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</aside>
+</div>
+
+<div class="wrap">
   <footer id="siteFooter">
     <div>Sourced from municipal Parks &amp; Recreation departments and regional library systems across BC.</div>
     <nav aria-label="Footer">
@@ -646,7 +699,7 @@
 
   // Replace YOUR_FORM_ID with the ID your Formspree dashboard gives you,
   // e.g. https://formspree.io/f/abcd1234
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mljeopdz';
 
   function handleSignup(e) {
     e.preventDefault();
