@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-09-07T18:02:07.947Z",
-  "count": 18,
+  "generatedAt": "2026-09-08T16:59:12.365Z",
+  "count": 27,
   "events": [
     {
       "source": "fvrl",
@@ -197,6 +197,105 @@
       "region": "fraser-valley",
       "dateText": "Tue, Sep 08th 2:00 pm to 5:00 pm",
       "url": "https://www.fvrl.bc.ca/events/23489",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "LEGO® Plus",
+      "location": "Sardis Library",
+      "regionLabel": "Fraser Valley — Sardis",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 2:30 pm to 4:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/22609",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Art Club",
+      "location": "White Rock Library",
+      "regionLabel": "Fraser Valley — White Rock",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 2:45 pm to 3:45 pm",
+      "url": "https://www.fvrl.bc.ca/events/15781",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Builder's Club",
+      "location": "Agassiz Library",
+      "regionLabel": "Fraser Valley — Agassiz",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 3:00 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/21811",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Genealogist on Site",
+      "location": "Mission Library",
+      "regionLabel": "Fraser Valley — Mission",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 3:00 pm to 5:00 pm",
+      "url": "https://www.fvrl.bc.ca/events/23560",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "LEGO® Club",
+      "location": "Mission Library",
+      "regionLabel": "Fraser Valley — Mission",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 3:00 pm to 4:15 pm",
+      "url": "https://www.fvrl.bc.ca/events/24089",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Drop-in LEGO® and KEVA",
+      "location": "Aldergrove Library",
+      "regionLabel": "Fraser Valley — Aldergrove",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 3:30 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/21586",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "LEGO® Club",
+      "location": "George Mackie Library",
+      "regionLabel": "Fraser Valley — George Mackie",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 08th 3:30 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/23237",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Got Game? For Families",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 3:30 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/23877",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Tween Switch-It Up",
+      "location": "Tsawwassen Library",
+      "regionLabel": "Fraser Valley — Tsawwassen",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 08th 3:30 pm to 4:30 pm",
+      "url": "https://www.fvrl.bc.ca/events/24755",
       "free": true,
       "tag": "Free"
     }
