@@ -1,0 +1,5 @@
+[build]
+  publish = "site"
+  # No build command needed — index.html and events.json are already
+  # static files committed to the repo (events.json is refreshed daily
+  # by the GitHub Action, not built here).

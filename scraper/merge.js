@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const { scrapeFvrl } = require('./scrapers/fvrl');
+const { scrapeVirl } = require('./scrapers/virl');
 const { scrapeAll: scrapePerfectMindActiveNet } = require('./scrapers/perfectmind-activenet-template');
 
 async function main() {
@@ -16,11 +17,15 @@ async function main() {
   const fvrlEvents = await scrapeFvrl({ maxPages: 3 });
   console.log(`  -> ${fvrlEvents.length} events`);
 
+  console.log('Scraping VIRL...');
+  const virlEvents = await scrapeVirl();
+  console.log(`  -> ${virlEvents.length} events`);
+
   console.log('Scraping PerfectMind/ActiveNet...');
   const recEvents = await scrapePerfectMindActiveNet();
   console.log(`  -> ${recEvents.length} events`);
 
-  const all = [...fvrlEvents, ...recEvents];
+  const all = [...fvrlEvents, ...virlEvents, ...recEvents];
 
   // events.json is written directly into ../site so it sits next to
   // index.html — that's the folder GitHub Actions deploys to Pages.
