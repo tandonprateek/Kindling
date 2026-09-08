@@ -1,165 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sproutlist — Family Events Across BC</title>
+<title>Sproutlist — Free Kids &amp; Family Events Across BC, Every Friday</title>
+<meta name="description" content="A free weekly roundup of kids' and family events across British Columbia — library storytimes, rec centre drop-ins, and community fairs in the Lower Mainland, Fraser Valley, Vancouver Island, Okanagan and Northern BC.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://REPLACE-WITH-YOUR-DOMAIN.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sproutlist — Free Kids &amp; Family Events Across BC">
+<meta property="og:description" content="Rec centre drop-ins, library storytimes, and community fairs across BC, pulled from a dozen sites into one free weekly email.">
+<meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN.com/">
+<meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN.com/og-image.png">
+<meta property="og:locale" content="en_CA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sproutlist — Free Kids &amp; Family Events Across BC">
+<meta name="twitter:description" content="Rec centre drop-ins, library storytimes, and community fairs across BC, in one free weekly email.">
+<meta name="twitter:image" content="https://REPLACE-WITH-YOUR-DOMAIN.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Sproutlist",
+  "url": "https://REPLACE-WITH-YOUR-DOMAIN.com/",
+  "description": "A free weekly roundup of kids' and family events across British Columbia."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Sproutlist free?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browsing the site and the weekly email are both free. Some individual events listed may have their own admission cost, which is shown on each listing." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do the events come from?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Events are pulled directly from public sources: regional library systems and municipal Parks & Recreation departments across BC. Listings refresh daily." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which parts of BC does Sproutlist cover?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Lower Mainland, Fraser Valley, and Vancouver Island are live now, with Okanagan/Interior and Northern BC coverage being added." }
+    },
+    {
+      "@type": "Question",
+      "name": "How often is the list updated?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The site refreshes daily, and the email digest goes out once a week, every Friday." }
+    }
+  ]
+}
+</script>
+
+<!--
+  ADVERTISING (Google AdSense) — see the "About ads" note in the project
+  README before going live. In short: you need your own approved AdSense
+  account before this script will show real ads. Steps:
+    1. Apply at https://adsense.google.com with this live site (needs a
+       real domain, a privacy policy page, and some original content —
+       both are already included below).
+    2. Once approved, Google gives you a publisher ID like
+       "ca-pub-1234567890123456" — replace YOUR_ADSENSE_CLIENT_ID below
+       AND in every ad slot's data-ad-client attribute.
+    3. Create ad units in your AdSense dashboard and swap each
+       data-ad-slot value for the real slot ID it gives you.
+    4. Add an ads.txt file at your domain's root — AdSense generates
+       the exact line to use; without it, ads may not serve or pay out.
+  Until all four steps are done, these slots will render blank — that's
+  expected, not a bug.
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID" crossorigin="anonymous"></script>
+
 <style>
   :root {
-    --paper: #FBF7EE;
-    --ink: #1F2A24;
-    --moss: #3D5A44;
-    --moss-deep: #2A3F30;
-    --clay: #C4693B;
-    --line: #D9D0BB;
+    --bg: #F2F6EC;
+    --ink: #1C2B1F;
+    --ink-soft: #4C5B4E;
+    --sprout: #2F6B3C;
+    --sprout-deep: #1F4A28;
+    --sun: #E8A93B;
+    --berry: #C94268;
+    --line: #DCE6D2;
     --card: #FFFFFF;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { scroll-behavior: smooth; }
+
   body {
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
-    line-height: 1.5;
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.55;
   }
 
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; }
 
-  header {
-    padding: 56px 0 40px;
-    border-bottom: 1px solid var(--line);
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header / hero ---------- */
+
+  header.hero {
+    padding: 52px 0 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-field {
+    position: absolute;
+    top: -40px; right: -60px;
+    width: 260px; height: 260px;
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   .brand {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 22px;
+    margin-bottom: 26px;
+    position: relative;
+    z-index: 1;
   }
 
-  .brand .mark {
-    width: 34px;
-    height: 34px;
-    flex-shrink: 0;
-  }
+  .brand .mark { width: 30px; height: 30px; flex-shrink: 0; }
 
   .brand .name {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--moss-deep);
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sprout-deep);
     letter-spacing: 0.01em;
   }
 
   h1 {
-    font-size: 40px;
-    line-height: 1.12;
-    font-weight: 500;
-    max-width: 16ch;
-    color: var(--moss-deep);
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-size: 44px;
+    line-height: 1.1;
+    font-weight: 600;
+    max-width: 15ch;
+    color: var(--sprout-deep);
+    position: relative;
+    z-index: 1;
   }
 
   .sub {
     margin-top: 16px;
     font-size: 18px;
-    max-width: 48ch;
-    color: #4A5750;
+    max-width: 46ch;
+    color: var(--ink-soft);
+    position: relative;
+    z-index: 1;
   }
 
   .signup {
-    margin-top: 32px;
+    margin-top: 30px;
     display: flex;
     gap: 10px;
     max-width: 440px;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
 
   .signup input[type="email"] {
     flex: 1;
     min-width: 200px;
-    padding: 13px 16px;
+    padding: 14px 16px;
     font-size: 16px;
     border: 1.5px solid var(--line);
-    border-radius: 3px;
+    border-radius: 10px;
     background: var(--card);
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-family: inherit;
     color: var(--ink);
   }
 
   .signup input[type="email"]:focus {
     outline: none;
-    border-color: var(--moss);
+    border-color: var(--sprout);
   }
 
   .signup button {
-    padding: 13px 22px;
+    padding: 14px 24px;
     font-size: 16px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--clay);
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    background: var(--berry);
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
+    transition: background 0.15s ease;
   }
 
-  .signup button:hover { background: #B05B31; }
+  .signup button:hover { background: #B3335A; }
+  .signup button:disabled { opacity: 0.7; cursor: default; }
 
   .microcopy {
     margin-top: 10px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
-    color: #7A8279;
+    color: #7A8A7C;
+    position: relative;
+    z-index: 1;
   }
 
   .confirm {
     margin-top: 16px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
-    color: var(--moss);
+    color: var(--sprout);
     display: none;
     font-weight: 600;
+    position: relative;
+    z-index: 1;
   }
 
-  main { padding: 44px 0 60px; }
+  /* ---------- Ad slots ---------- */
+
+  .ad-slot {
+    margin: 8px 0 32px;
+    text-align: center;
+  }
+
+  .ad-slot .ad-label {
+    font-size: 10.5px;
+    color: #9AA79B;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  /* ---------- Main / events ---------- */
+
+  main { padding: 0 0 60px; }
+
+  h2 {
+    font-family: 'Fredoka', 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--sprout-deep);
+    margin-bottom: 16px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+  }
 
   .region-nav {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
-    margin-bottom: 28px;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    margin-bottom: 20px;
   }
 
   .region-btn {
-    padding: 8px 14px;
+    padding: 8px 15px;
     font-size: 13.5px;
     border: 1.5px solid var(--line);
     background: var(--card);
-    color: var(--moss-deep);
+    color: var(--sprout-deep);
     border-radius: 20px;
     cursor: pointer;
     font-family: inherit;
+    font-weight: 500;
+    transition: all 0.12s ease;
   }
 
+  .region-btn:hover { border-color: var(--sprout); }
+
   .region-btn.active {
-    background: var(--moss-deep);
-    border-color: var(--moss-deep);
-    color: var(--paper);
+    background: var(--sprout-deep);
+    border-color: var(--sprout-deep);
+    color: var(--bg);
   }
 
   .weekend-label {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
-    color: var(--moss);
+    color: var(--sprout);
     letter-spacing: 0.02em;
     margin-bottom: 18px;
+    font-weight: 600;
   }
 
   .event {
     display: grid;
-    grid-template-columns: 76px 1fr;
+    grid-template-columns: 68px 1fr;
     gap: 18px;
     padding: 22px 0;
     border-bottom: 1px solid var(--line);
@@ -168,39 +305,27 @@
   .event:first-of-type { padding-top: 0; }
 
   .date-block {
-    background: var(--moss-deep);
-    color: var(--paper);
-    border-radius: 4px;
+    background: var(--sprout-deep);
+    color: var(--bg);
+    border-radius: 10px;
     padding: 10px 0;
     text-align: center;
     height: fit-content;
   }
 
-  .date-block .day {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.04em;
-  }
-
-  .date-block .num {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.1;
-  }
+  .date-block .day { font-size: 11px; letter-spacing: 0.04em; opacity: 0.85; }
+  .date-block .num { font-size: 21px; font-weight: 700; line-height: 1.1; font-family: 'Fredoka', sans-serif; }
 
   .event-title {
-    font-size: 19px;
+    font-size: 18.5px;
     font-weight: 600;
-    color: var(--moss-deep);
+    color: var(--sprout-deep);
     margin-bottom: 4px;
   }
 
-  .event-meta {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 13px;
-    color: #6B7A70;
-    margin-bottom: 6px;
-  }
+  .event-title a:hover { text-decoration: underline; }
+
+  .event-meta { font-size: 13px; color: #6B7A6D; margin-bottom: 6px; }
 
   .event-meta span:not(:last-child)::after {
     content: "·";
@@ -208,69 +333,127 @@
     color: var(--line);
   }
 
-  .event-desc {
-    font-size: 15.5px;
-    color: #3A423C;
-    max-width: 52ch;
-  }
+  .event-desc { font-size: 15.5px; color: #384338; max-width: 52ch; }
 
   .tag {
     display: inline-block;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 11.5px;
-    padding: 3px 9px;
+    padding: 3px 10px;
     border-radius: 20px;
-    background: #EAF0E7;
-    color: var(--moss-deep);
+    background: #E4EEDD;
+    color: var(--sprout-deep);
     margin-top: 8px;
+    font-weight: 600;
   }
 
-  .tag.free { background: #FBEADE; color: var(--clay); }
+  .tag.free { background: #FBF0DC; color: #8A6416; }
 
-  .region-flag {
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    font-size: 11px;
-    color: #93998F;
-    margin-top: 2px;
+  .region-flag { font-size: 11px; color: #97A398; margin-top: 3px; }
+
+  .empty-state { padding: 30px 0; color: #7A8A7C; font-size: 15px; }
+
+  /* ---------- How it works ---------- */
+
+  .how-it-works {
+    margin-top: 56px;
+    padding-top: 44px;
+    border-top: 1px solid var(--line);
   }
 
-  .empty-state {
-    padding: 30px 0;
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
-    color: #7A8279;
-    font-size: 15px;
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 4px;
   }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .step .step-icon { width: 30px; height: 30px; margin-bottom: 12px; }
+
+  .step h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sprout-deep);
+    margin-bottom: 6px;
+  }
+
+  .step p { font-size: 14.5px; color: var(--ink-soft); }
+
+  /* ---------- FAQ ---------- */
+
+  .faq {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+  }
+
+  .faq-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .faq-item:last-child { border-bottom: none; }
+
+  .faq-item h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--sprout-deep);
+    margin-bottom: 6px;
+  }
+
+  .faq-item p { font-size: 14.5px; color: var(--ink-soft); max-width: 60ch; }
+
+  /* ---------- Footer ---------- */
 
   footer {
-    padding: 32px 0 60px;
+    padding: 32px 0 56px;
     border-top: 1px solid var(--line);
-    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
     font-size: 13px;
-    color: #8A9088;
+    color: #8A9A8C;
   }
 
-  @media (max-width: 480px) {
-    h1 { font-size: 30px; }
-    .event { grid-template-columns: 60px 1fr; }
+  footer nav {
+    margin-top: 10px;
+    display: flex;
+    gap: 16px;
+  }
+
+  footer nav a { color: var(--sprout); text-decoration: none; }
+  footer nav a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 32px; }
+    .event { grid-template-columns: 56px 1fr; }
+    .steps { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
 <div class="wrap">
-  <header>
+  <header class="hero">
+    <svg class="hero-field" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M230 260V150" stroke="#2F6B3C" stroke-width="6" stroke-linecap="round"/>
+      <path d="M230 165c-40 0-60-25-60-65 40 0 65 20 65 60-6-40 15-65 55-70 6 40-15 70-60 75z" fill="#2F6B3C"/>
+    </svg>
+
     <div class="brand">
-      <svg class="mark" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17 30V17" stroke="#3D5A44" stroke-width="2" stroke-linecap="round"/>
-        <path d="M17 19c-6 0-9-4-9-10 6 0 10 3 10 9-1-6 2-10 8-11 1 6-2 11-9 12z" fill="#5B8A5F"/>
-        <path d="M17 17c0-5 2-8 6-10" stroke="#3D5A44" stroke-width="0.6" fill="none" opacity="0.4"/>
+      <svg class="mark" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M17 30V17" stroke="#1F4A28" stroke-width="2" stroke-linecap="round"/>
+        <path d="M17 19c-6 0-9-4-9-10 6 0 10 3 10 9-1-6 2-10 8-11 1 6-2 11-9 12z" fill="#2F6B3C"/>
       </svg>
       <span class="name">SPROUTLIST</span>
     </div>
+
     <h1>Every kids' event across BC, one email a week.</h1>
-    <p class="sub">Pick your region — rec centre drop-ins, library story time, and community fairs pulled from a dozen sites and put in your inbox every Friday.</p>
+    <p class="sub">Rec centre drop-ins, library storytimes, and community fairs — pulled from a dozen public sources into one free Friday email. Pick your region below to browse today.</p>
 
     <form class="signup" id="signupForm" onsubmit="handleSignup(event)">
+      <label for="emailInput" class="sr-only">Email address</label>
       <input type="email" id="emailInput" name="email" placeholder="you@email.com" required>
       <button type="submit">Get Friday's list</button>
     </form>
@@ -278,7 +461,21 @@
     <p class="confirm" id="confirmMsg">You're on the list — first roundup lands Friday.</p>
   </header>
 
+  <!-- Ad slot: leaderboard, below hero. Blank until AdSense is approved
+       and the client/slot IDs above are filled in — see head comment. -->
+  <div class="ad-slot">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
+         data-ad-slot="YOUR_AD_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
   <main>
+    <h2 class="sr-only">Browse events by region</h2>
     <div class="region-nav" id="regionNav">
       <button class="region-btn active" data-region="all">All BC</button>
       <button class="region-btn" data-region="lower-mainland">Lower Mainland</button>
@@ -292,10 +489,63 @@
 
     <div id="eventList"></div>
     <div class="empty-state" id="emptyState" style="display:none;"></div>
+
+    <section class="how-it-works">
+      <h2>How Sproutlist works</h2>
+      <div class="steps">
+        <div class="step">
+          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="15" cy="15" r="13" stroke="#2F6B3C" stroke-width="2"/>
+            <path d="M9 15l4 4 8-8" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>We gather listings daily</h3>
+          <p>Public event calendars from BC library systems and municipal rec centres are checked every day, automatically.</p>
+        </div>
+        <div class="step">
+          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 9h18M6 15h18M6 21h12" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>You pick a region</h3>
+          <p>Filter to just your part of BC — Lower Mainland, Fraser Valley, Vancouver Island, and more being added.</p>
+        </div>
+        <div class="step">
+          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="4" y="7" width="22" height="16" rx="3" stroke="#2F6B3C" stroke-width="2"/>
+            <path d="M4 9l11 8 11-8" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>Friday, it lands in your inbox</h3>
+          <p>One email a week with everything happening near you — nothing to check, nothing to remember.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2>Frequently asked questions</h2>
+      <div class="faq-item">
+        <h3>Is Sproutlist free?</h3>
+        <p>Yes. Browsing the site and the weekly email are both free. Some individual events may have their own admission cost — that's shown on each listing.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Where do the events come from?</h3>
+        <p>Directly from public sources: regional library systems and municipal Parks &amp; Recreation departments across BC. Listings refresh daily.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Which parts of BC does Sproutlist cover?</h3>
+        <p>Lower Mainland, Fraser Valley, and Vancouver Island are live now, with Okanagan/Interior and Northern BC coverage being added.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How often is the list updated?</h3>
+        <p>The site refreshes daily, and the email digest goes out once a week, every Friday.</p>
+      </div>
+    </section>
   </main>
 
   <footer id="siteFooter">
-    Sourced from municipal Parks &amp; Recreation departments and regional library systems across BC.
+    <div>Sourced from municipal Parks &amp; Recreation departments and regional library systems across BC.</div>
+    <nav aria-label="Footer">
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="mailto:hello@REPLACE-WITH-YOUR-DOMAIN.com">Contact</a>
+    </nav>
   </footer>
 </div>
 
@@ -312,9 +562,6 @@
   let allEvents = [];
   let currentRegion = 'all';
 
-  // Scraped events carry a free-text dateText like "Sun, Sep 06th 1:00 pm
-  // to 4:30 pm" rather than separate day/number fields — split it here so
-  // it still fits the existing date-block UI.
   function splitDateText(dateText) {
     if (!dateText) return { day: '—', num: '—', timeRange: null };
     const match = dateText.match(/^([A-Za-z]{3}),\s[A-Za-z]{3}\s(\d{1,2})(?:st|nd|rd|th)?\s(.+)$/);
@@ -323,8 +570,6 @@
   }
 
   function normalizeEvent(e) {
-    // Handles both the scraper's schema (title/location/dateText/regionLabel)
-    // and falls back gracefully if a field is missing.
     const { day, num, timeRange } = splitDateText(e.dateText);
     const meta = [timeRange, e.location].filter(Boolean);
     return {
@@ -355,7 +600,7 @@
       const div = document.createElement('div');
       div.className = 'event';
       const titleHtml = e.url
-        ? `<a href="${e.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${e.title}</a>`
+        ? `<a href="${e.url}" target="_blank" rel="noopener">${e.title}</a>`
         : e.title;
       div.innerHTML = `
         <div class="date-block"><div class="day">${e.day}</div><div class="num">${e.num}</div></div>
@@ -399,9 +644,9 @@
 
   loadEvents();
 
-  // Replace YOUR_FORM_ID below with the ID Formspree gives you,
+  // Replace YOUR_FORM_ID with the ID your Formspree dashboard gives you,
   // e.g. https://formspree.io/f/abcd1234
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mljeopdz';
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
   function handleSignup(e) {
     e.preventDefault();
