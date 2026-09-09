@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sproutlist — Free Kids &amp; Family Events Across BC, Every Friday</title>
-<meta name="description" content="A free weekly roundup of kids' and family events across British Columbia — library storytimes, rec centre drop-ins, and community fairs in the Lower Mainland, Fraser Valley, Vancouver Island, Okanagan and Northern BC.">
+<title>This Week's Family Events in BC — Sproutlist</title>
+<meta name="description" content="Browse this week's kids' and family events across British Columbia, filterable by region — Lower Mainland, Fraser Valley, Vancouver Island, Okanagan and Northern BC. Updated daily.">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://sproutlist.netlify.app/">
+<link rel="canonical" href="https://sproutlist.netlify.app/events.html">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sproutlist — Free Kids &amp; Family Events Across BC">
-<meta property="og:description" content="Rec centre drop-ins, library storytimes, and community fairs across BC, pulled from a dozen sites into one free weekly email.">
-<meta property="og:url" content="https://sproutlist.netlify.app/">
+<meta property="og:title" content="This Week's Family Events in BC — Sproutlist">
+<meta property="og:description" content="Browse kids' and family events across BC by region, updated daily from public library and rec centre calendars.">
+<meta property="og:url" content="https://sproutlist.netlify.app/events.html">
 <meta property="og:image" content="https://sproutlist.netlify.app/og-image.png">
 <meta property="og:locale" content="en_CA">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sproutlist — Free Kids &amp; Family Events Across BC">
-<meta name="twitter:description" content="Rec centre drop-ins, library storytimes, and community fairs across BC, in one free weekly email.">
+<meta name="twitter:title" content="This Week's Family Events in BC — Sproutlist">
+<meta name="twitter:description" content="Browse kids' and family events across BC by region, updated daily.">
 <meta name="twitter:image" content="https://sproutlist.netlify.app/og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,40 +26,25 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Sproutlist",
-  "url": "https://sproutlist.netlify.app/",
-  "description": "A free weekly roundup of kids' and family events across British Columbia."
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is Sproutlist free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Browsing the site and the weekly email are both free. Some individual events listed may have their own admission cost, which is shown on each listing." }
-    },
-    {
-      "@type": "Question",
-      "name": "Where do the events come from?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Events are pulled directly from public sources: regional library systems and municipal Parks & Recreation departments across BC. Listings refresh daily." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which parts of BC does Sproutlist cover?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Lower Mainland, Fraser Valley, and Vancouver Island are live now, with Okanagan/Interior and Northern BC coverage being added." }
-    },
-    {
-      "@type": "Question",
-      "name": "How often is the list updated?",
-      "acceptedAnswer": { "@type": "Answer", "text": "The site refreshes daily, and the email digest goes out once a week, every Friday." }
-    }
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://sproutlist.netlify.app/" },
+    { "@type": "ListItem", "position": 2, "name": "List of Events", "item": "https://sproutlist.netlify.app/events.html" }
   ]
 }
 </script>
+
+<!--
+  ADVERTISING (Google AdSense) — see README before going live. You need
+  your own approved AdSense account before this shows real ads:
+    1. Apply at https://adsense.google.com with this live site.
+    2. Replace YOUR_ADSENSE_CLIENT_ID below and in the ad slot's
+       data-ad-client attribute with your real publisher ID.
+    3. Replace YOUR_AD_SLOT_ID with a real ad unit's slot ID.
+    4. Add an ads.txt file at your domain root with the line AdSense gives you.
+  Until then this renders as an empty placeholder box — expected, not a bug.
+-->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_CLIENT_ID" crossorigin="anonymous"></script>
 
 <style>
 <style>
@@ -514,13 +499,9 @@
 </head>
 <body>
 
+<div class="page">
 <div class="wrap">
-  <header class="hero">
-    <svg class="hero-field" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M230 260V150" stroke="#2F6B3C" stroke-width="6" stroke-linecap="round"/>
-      <path d="M230 165c-40 0-60-25-60-65 40 0 65 20 65 60-6-40 15-65 55-70 6 40-15 70-60 75z" fill="#2F6B3C"/>
-    </svg>
-
+  <div class="top-bar">
     <div class="brand">
       <svg class="mark" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M17 30V17" stroke="#1F4A28" stroke-width="2" stroke-linecap="round"/>
@@ -529,75 +510,55 @@
       <span class="name">SPROUTLIST</span>
     </div>
 
-    <h1>Every kids' event across BC, one email a week.</h1>
-    <p class="sub">Rec centre drop-ins, library storytimes, and community fairs — pulled from a dozen public sources into one free Friday email.</p>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="crumb-sep" aria-hidden="true">/</span>
+      <span class="crumb-current" aria-current="page">List of Events</span>
+    </nav>
 
-    <form class="signup" id="signupForm" onsubmit="handleSignup(event)">
-      <label for="emailInput" class="sr-only">Email address</label>
-      <input type="email" id="emailInput" name="email" placeholder="you@email.com" required>
-      <button type="submit">Get Friday's list</button>
-    </form>
-    <p class="microcopy">Free. One email a week. No spam, unsubscribe anytime.</p>
-    <p class="confirm" id="confirmMsg">You're on the list — first roundup lands Friday.</p>
-
-    <a class="cta-link" href="events.html">Browse this week's events <span aria-hidden="true">&rarr;</span></a>
-  </header>
+    <h1>This week's family events across BC</h1>
+    <p class="sub">Filter by region to see what's happening near you. Updated daily from public library and rec centre calendars.</p>
+  </div>
 
   <main>
-    <section class="how-it-works">
-      <h2>How Sproutlist works</h2>
-      <div class="steps">
-        <div class="step">
-          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="15" cy="15" r="13" stroke="#2F6B3C" stroke-width="2"/>
-            <path d="M9 15l4 4 8-8" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3>We gather listings daily</h3>
-          <p>Public event calendars from BC library systems and municipal rec centres are checked every day, automatically.</p>
-        </div>
-        <div class="step">
-          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M6 9h18M6 15h18M6 21h12" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <h3>You pick a region</h3>
-          <p>Filter to just your part of BC — Lower Mainland, Fraser Valley, Vancouver Island, and more being added.</p>
-        </div>
-        <div class="step">
-          <svg class="step-icon" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="4" y="7" width="22" height="16" rx="3" stroke="#2F6B3C" stroke-width="2"/>
-            <path d="M4 9l11 8 11-8" stroke="#2F6B3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <h3>Friday, it lands in your inbox</h3>
-          <p>One email a week with everything happening near you — nothing to check, nothing to remember.</p>
-        </div>
-      </div>
-    </section>
+    <h2 class="sr-only">Browse events by region</h2>
+    <div class="region-nav" id="regionNav">
+      <button class="region-btn active" data-region="all">All BC</button>
+      <button class="region-btn" data-region="lower-mainland">Lower Mainland</button>
+      <button class="region-btn" data-region="fraser-valley">Fraser Valley</button>
+      <button class="region-btn" data-region="vancouver-island">Vancouver Island</button>
+      <button class="region-btn" data-region="okanagan">Okanagan / Interior</button>
+      <button class="region-btn" data-region="northern-bc">Northern BC</button>
+    </div>
 
-    <section class="faq">
-      <h2>Frequently asked questions</h2>
-      <div class="faq-item">
-        <h3>Is Sproutlist free?</h3>
-        <p>Yes. Browsing the site and the weekly email are both free. Some individual events may have their own admission cost — that's shown on each listing.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Where do the events come from?</h3>
-        <p>Directly from public sources: regional library systems and municipal Parks &amp; Recreation departments across BC. Listings refresh daily.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Which parts of BC does Sproutlist cover?</h3>
-        <p>Lower Mainland, Fraser Valley, and Vancouver Island are live now, with Okanagan/Interior and Northern BC coverage being added.</p>
-      </div>
-      <div class="faq-item">
-        <h3>How often is the list updated?</h3>
-        <p>The site refreshes daily, and the email digest goes out once a week, every Friday.</p>
-      </div>
-    </section>
+    <div class="weekend-label" id="weekendLabel">LOADING EVENTS…</div>
+
+    <div id="eventList"></div>
+    <div class="empty-state" id="emptyState" style="display:none;"></div>
   </main>
+</div>
 
+<aside class="ad-rail" aria-label="Advertisement">
+  <!-- Ad slot: right-hand rail on desktop, stacks below the event list on
+       mobile. Deliberately kept out of the main content column and the event list itself. -->
+  <div class="ad-slot">
+    <div class="ad-label">ADVERTISEMENT</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-YOUR_ADSENSE_CLIENT_ID"
+         data-ad-slot="YOUR_AD_SLOT_ID"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+</aside>
+</div>
+
+<div class="wrap">
   <footer id="siteFooter">
     <div>Sourced from municipal Parks &amp; Recreation departments and regional library systems across BC.</div>
     <nav aria-label="Footer">
-      <a href="events.html">List of Events</a>
+      <a href="index.html">Home</a>
       <a href="privacy.html">Privacy Policy</a>
       <a href="mailto:hello@sproutlist.netlify.app">Contact</a>
     </nav>
@@ -605,36 +566,96 @@
 </div>
 
 <script>
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mljeopdz';
+  const EVENTS_JSON_URL = 'events.json';
 
-  function handleSignup(e) {
-    e.preventDefault();
-    const button = e.target.querySelector('button');
-    button.disabled = true;
-    button.textContent = 'Signing up…';
+  const eventList = document.getElementById('eventList');
+  const emptyState = document.getElementById('emptyState');
+  const weekendLabel = document.getElementById('weekendLabel');
 
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: new FormData(e.target)
-    })
-      .then(res => {
-        if (res.ok) {
-          document.getElementById('confirmMsg').style.display = 'block';
-          document.querySelector('.signup').style.display = 'none';
-          document.querySelector('.microcopy').style.display = 'none';
-        } else {
-          button.disabled = false;
-          button.textContent = 'Get Friday\'s list';
-          alert('Something went wrong — please try again.');
-        }
-      })
-      .catch(() => {
-        button.disabled = false;
-        button.textContent = 'Get Friday\'s list';
-        alert('Something went wrong — please try again.');
-      });
+  let allEvents = [];
+  let currentRegion = 'all';
+
+  function splitDateText(dateText) {
+    if (!dateText) return { day: '—', num: '—', timeRange: null };
+    const match = dateText.match(/^([A-Za-z]{3}),\s[A-Za-z]{3}\s(\d{1,2})(?:st|nd|rd|th)?\s(.+)$/);
+    if (!match) return { day: '—', num: '—', timeRange: dateText };
+    return { day: match[1].toUpperCase(), num: match[2], timeRange: match[3] };
   }
+
+  function normalizeEvent(e) {
+    const { day, num, timeRange } = splitDateText(e.dateText);
+    const meta = [timeRange, e.location].filter(Boolean);
+    return {
+      region: e.region || 'lower-mainland',
+      regionLabel: e.regionLabel || e.location || '',
+      day, num,
+      title: e.title || 'Untitled event',
+      meta,
+      desc: e.desc || (e.url ? 'See the listing for full details.' : ''),
+      url: e.url || null,
+      tag: e.tag || (e.free ? 'Free' : 'See listing'),
+      free: !!e.free
+    };
+  }
+
+  function renderEvents(region) {
+    const filtered = region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
+    eventList.innerHTML = '';
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+      emptyState.textContent = allEvents.length === 0
+        ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
+        : 'No listed events for this region right now — check back after the next scrape.';
+      return;
+    }
+    emptyState.style.display = 'none';
+    filtered.forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'event';
+      const titleHtml = e.url
+        ? `<a href="${e.url}" target="_blank" rel="noopener">${e.title}</a>`
+        : e.title;
+      div.innerHTML = `
+        <div class="date-block"><div class="day">${e.day}</div><div class="num">${e.num}</div></div>
+        <div>
+          <div class="event-title">${titleHtml}</div>
+          <div class="event-meta">${e.meta.map(m => `<span>${m}</span>`).join('')}</div>
+          <div class="event-desc">${e.desc}</div>
+          <span class="tag ${e.free ? 'free' : ''}">${e.tag}</span>
+          <div class="region-flag">${e.regionLabel}</div>
+        </div>
+      `;
+      eventList.appendChild(div);
+    });
+  }
+
+  async function loadEvents() {
+    try {
+      const res = await fetch(EVENTS_JSON_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`events.json returned ${res.status}`);
+      const data = await res.json();
+      allEvents = (data.events || []).map(normalizeEvent);
+      const generated = data.generatedAt ? new Date(data.generatedAt) : null;
+      weekendLabel.textContent = generated
+        ? `LIVE EVENTS — UPDATED ${generated.toLocaleDateString('en-CA', { month: 'short', day: 'numeric' })}`
+        : 'LIVE EVENTS';
+    } catch (err) {
+      console.error('Failed to load events.json:', err);
+      allEvents = [];
+      weekendLabel.textContent = 'EVENTS UNAVAILABLE';
+    }
+    renderEvents(currentRegion);
+  }
+
+  document.getElementById('regionNav').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('region-btn')) return;
+    document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentRegion = e.target.dataset.region;
+    renderEvents(currentRegion);
+  });
+
+  loadEvents();
 </script>
 
 </body>
