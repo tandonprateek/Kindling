@@ -36,7 +36,7 @@ const TARGET = {
 };
 
 async function scrapeWithPuppeteer() {
-  /*
+  
   const browser = await puppeteer.launch({ headless: 'new' });
   const page = await browser.newPage();
   await page.goto(TARGET.url, { waitUntil: 'networkidle2', timeout: 30000 });
@@ -55,7 +55,7 @@ async function scrapeWithPuppeteer() {
 
   await browser.close();
   return events;
-  */
+  
 
   console.warn(
     '[burnaby] Scraping not yet wired up — bpl.bc.ca/events renders its ' +
