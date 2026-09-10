@@ -364,6 +364,50 @@
 
   .empty-state { padding: 30px 0; color: #7A8A7C; font-size: 15px; }
 
+  /* ---------- Pagination ---------- */
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 28px 0 8px;
+  }
+
+  .pagination button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--sprout-deep);
+    background: var(--card);
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .pagination button:hover:not(:disabled):not(.active) { border-color: var(--sprout); }
+
+  .pagination button.active {
+    background: var(--sprout-deep);
+    border-color: var(--sprout-deep);
+    color: var(--bg);
+    cursor: default;
+  }
+
+  .pagination button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  .pagination .ellipsis {
+    padding: 0 4px;
+    color: var(--ink-soft);
+  }
+
   /* ---------- How it works ---------- */
 
   .how-it-works {
@@ -534,6 +578,7 @@
 
     <div id="eventList"></div>
     <div class="empty-state" id="emptyState" style="display:none;"></div>
+    <nav class="pagination" id="pagination" aria-label="Events pagination" style="display:none;"></nav>
   </main>
 </div>
 
@@ -570,9 +615,13 @@
   const eventList = document.getElementById('eventList');
   const emptyState = document.getElementById('emptyState');
   const weekendLabel = document.getElementById('weekendLabel');
+  const pagination = document.getElementById('pagination');
+
+  const PAGE_SIZE = 10;
 
   let allEvents = [];
   let currentRegion = 'all';
+  let currentPage = 1;
 
   function splitDateText(dateText) {
     if (!dateText) return { day: '—', num: '—', timeRange: null };
@@ -597,18 +646,13 @@
     };
   }
 
-  function renderEvents(region) {
-    const filtered = region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
+  function getFilteredEvents(region) {
+    return region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
+  }
+
+  function renderEventCards(pageItems) {
     eventList.innerHTML = '';
-    if (filtered.length === 0) {
-      emptyState.style.display = 'block';
-      emptyState.textContent = allEvents.length === 0
-        ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
-        : 'No listed events for this region right now — check back after the next scrape.';
-      return;
-    }
-    emptyState.style.display = 'none';
-    filtered.forEach(e => {
+    pageItems.forEach(e => {
       const div = document.createElement('div');
       div.className = 'event';
       const titleHtml = e.url
@@ -628,6 +672,100 @@
     });
   }
 
+  // Builds page number buttons with ellipsis for long runs, e.g.
+  // 1 2 3 4 5 ... 12  or  1 ... 5 6 7 ... 12 — always shows first, last,
+  // current, and one neighbour on each side.
+  function buildPageButtons(totalPages, page) {
+    const pages = [];
+    const add = (p) => { if (!pages.includes(p)) pages.push(p); };
+
+    add(1);
+    for (let p = page - 1; p <= page + 1; p++) {
+      if (p > 1 && p < totalPages) add(p);
+    }
+    add(totalPages);
+
+    pages.sort((a, b) => a - b);
+
+    const withEllipsis = [];
+    let prev = null;
+    for (const p of pages) {
+      if (prev !== null && p - prev > 1) withEllipsis.push('…');
+      withEllipsis.push(p);
+      prev = p;
+    }
+    return withEllipsis;
+  }
+
+  function renderPagination(totalItems) {
+    const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+    pagination.innerHTML = '';
+
+    if (totalPages <= 1) {
+      pagination.style.display = 'none';
+      return;
+    }
+    pagination.style.display = 'flex';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = '‹ Prev';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+    pagination.appendChild(prevBtn);
+
+    buildPageButtons(totalPages, currentPage).forEach(p => {
+      if (p === '…') {
+        const span = document.createElement('span');
+        span.className = 'ellipsis';
+        span.textContent = '…';
+        pagination.appendChild(span);
+        return;
+      }
+      const btn = document.createElement('button');
+      btn.textContent = String(p);
+      if (p === currentPage) btn.classList.add('active');
+      btn.addEventListener('click', () => goToPage(p));
+      pagination.appendChild(btn);
+    });
+
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Next ›';
+    nextBtn.disabled = currentPage === totalPages;
+    nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
+    pagination.appendChild(nextBtn);
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    renderEvents(currentRegion);
+    eventList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderEvents(region) {
+    const filtered = getFilteredEvents(region);
+
+    if (filtered.length === 0) {
+      eventList.innerHTML = '';
+      pagination.style.display = 'none';
+      emptyState.style.display = 'block';
+      emptyState.textContent = allEvents.length === 0
+        ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
+        : 'No listed events for this region right now — check back after the next scrape.';
+      return;
+    }
+    emptyState.style.display = 'none';
+
+    const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    const startIdx = (currentPage - 1) * PAGE_SIZE;
+    const pageItems = filtered.slice(startIdx, startIdx + PAGE_SIZE);
+
+    renderEventCards(pageItems);
+    renderPagination(filtered.length);
+  }
+
   async function loadEvents() {
     try {
       const res = await fetch(EVENTS_JSON_URL, { cache: 'no-store' });
@@ -643,6 +781,7 @@
       allEvents = [];
       weekendLabel.textContent = 'EVENTS UNAVAILABLE';
     }
+    currentPage = 1;
     renderEvents(currentRegion);
   }
 
@@ -651,6 +790,7 @@
     document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
     e.target.classList.add('active');
     currentRegion = e.target.dataset.region;
+    currentPage = 1;
     renderEvents(currentRegion);
   });
 
