@@ -10,7 +10,9 @@ const fs = require('fs');
 const path = require('path');
 const { scrapeFvrl } = require('./scrapers/fvrl');
 const { scrapeVirl } = require('./scrapers/virl');
+const { scrapeVpl } = require('./scrapers/vpl');
 const { scrapeAll: scrapePerfectMindActiveNet } = require('./scrapers/perfectmind-activenet-template');
+const { scrapeAll: scrapeBurnaby } = require('./scrapers/burnaby-template');
 
 async function main() {
   console.log('Scraping FVRL...');
@@ -21,11 +23,19 @@ async function main() {
   const virlEvents = await scrapeVirl();
   console.log(`  -> ${virlEvents.length} events`);
 
+  console.log('Scraping VPL...');
+  const vplEvents = await scrapeVpl({ maxPagesPerAudience: 3 });
+  console.log(`  -> ${vplEvents.length} events`);
+
   console.log('Scraping PerfectMind/ActiveNet...');
   const recEvents = await scrapePerfectMindActiveNet();
   console.log(`  -> ${recEvents.length} events`);
 
-  const all = [...fvrlEvents, ...virlEvents, ...recEvents];
+  console.log('Scraping Burnaby...');
+  const burnabyEvents = await scrapeBurnaby();
+  console.log(`  -> ${burnabyEvents.length} events`);
+
+  const all = [...fvrlEvents, ...virlEvents, ...vplEvents, ...recEvents, ...burnabyEvents];
 
   // events.json is written directly into ../site so it sits next to
   // index.html — that's the folder GitHub Actions deploys to Pages.
