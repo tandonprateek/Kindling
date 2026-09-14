@@ -13,6 +13,7 @@ const { scrapeVirl } = require('./scrapers/virl');
 const { scrapeVpl } = require('./scrapers/vpl');
 const { scrapeAll: scrapePerfectMindActiveNet } = require('./scrapers/perfectmind-activenet-template');
 const { scrapeAll: scrapeBurnaby } = require('./scrapers/burnaby');
+const { scrapeEventbrite } = require('./scrapers/eventbrite');
 
 async function main() {
   console.log('Scraping FVRL...');
@@ -35,7 +36,11 @@ async function main() {
   const burnabyEvents = await scrapeBurnaby();
   console.log(`  -> ${burnabyEvents.length} events`);
 
-  const all = [...fvrlEvents, ...virlEvents, ...vplEvents, ...recEvents, ...burnabyEvents];
+  console.log('Scraping Eventbrite...');
+  const eventbriteEvents = await scrapeEventbrite();
+  console.log(`  -> ${eventbriteEvents.length} events`);
+
+  const all = [...fvrlEvents, ...virlEvents, ...vplEvents, ...recEvents, ...burnabyEvents, ...eventbriteEvents];
 
   // events.json is written directly into ../site so it sits next to
   // index.html — that's the folder GitHub Actions deploys to Pages.

@@ -38,13 +38,18 @@ const axios = require('axios');
 
 const EVENTBRITE_TOKEN = process.env.EVENTBRITE_TOKEN;
 
-// Curated watchlist. Replace these placeholder IDs with real BC family/
-// kids event organizers you've found — these three are illustrative
-// placeholders only and will 404 or return nothing as-is.
+// Curated watchlist — verified real BC organizers found and confirmed via
+// their live Eventbrite organizer profile URLs (eventbrite.com/o/name-ID).
+// Only add organizers you've personally verified are BC-based: Eventbrite's
+// city-based browse categories can bleed across the US border (confirmed
+// during research — a "Victoria, Canada" kids-camp search surfaced an
+// organizer actually located in Friday Harbor, WA). Don't trust the
+// category alone; check the organizer's own listed address.
 const ORGANIZERS = [
-  { id: 'REPLACE_WITH_REAL_ORGANIZER_ID', label: 'Example Museum', region: 'lower-mainland' },
-  { id: 'REPLACE_WITH_REAL_ORGANIZER_ID', label: 'Example Kids Theatre', region: 'vancouver-island' },
-  { id: 'REPLACE_WITH_REAL_ORGANIZER_ID', label: 'Example Science Centre', region: 'fraser-valley' }
+  { id: '32420460665', label: 'MONOVA: Museum of North Vancouver', city: 'North Vancouver', region: 'lower-mainland' },
+  { id: '33658027413', label: 'Place des Arts (Coquitlam)', city: 'Coquitlam', region: 'lower-mainland' }
+  // Add more here as you verify them, e.g.:
+  // { id: 'REAL_ID', label: 'Some Vancouver Island Organizer', city: 'Victoria', region: 'vancouver-island' },
 ];
 
 // Extra keyword safety net: even a "family event" organizer sometimes
@@ -78,19 +83,20 @@ async function fetchOrganizerEvents(organizerId) {
 }
 
 function normalizeEvent(raw, organizerMeta) {
-  const start = raw.start && raw.start.local ? new Date(raw.start.local) : null;
+  const hasStart = raw.start && raw.start.local;
   const title = raw.name && raw.name.text ? raw.name.text : 'Untitled event';
   const summary = raw.summary || '';
   const venueName = raw.venue && raw.venue.name ? raw.venue.name : organizerMeta.label;
 
-  const dateText = start ? formatDateText(start) : null;
+  const dateText = hasStart ? formatDateText(raw.start.local) : null;
   const isFree = raw.is_free === true;
 
   return {
     source: 'eventbrite',
     title,
     location: venueName,
-    regionLabel: `${regionDisplayName(organizerMeta.region)} — ${venueName}`,
+    city: organizerMeta.city,
+    regionLabel: `${organizerMeta.city} — ${venueName}`,
     region: organizerMeta.region,
     dateText,
     url: raw.url || null,
@@ -98,17 +104,6 @@ function normalizeEvent(raw, organizerMeta) {
     tag: isFree ? 'Free' : 'See listing',
     _matchesFamilyKeywords: FAMILY_KEYWORDS.test(title) || FAMILY_KEYWORDS.test(summary)
   };
-}
-
-function regionDisplayName(region) {
-  const map = {
-    'lower-mainland': 'Lower Mainland',
-    'fraser-valley': 'Fraser Valley',
-    'vancouver-island': 'Vancouver Island',
-    'okanagan': 'Okanagan',
-    'northern-bc': 'Northern BC'
-  };
-  return map[region] || region;
 }
 
 // Same dateText shape as fvrl.js/virl.js ("Tue, Sep 08th 3:30 pm") so the
@@ -123,9 +118,17 @@ function ordinalSuffix(day) {
   }
 }
 
-function formatDateText(date) {
+// Formats Eventbrite's start.local field into the same shape FVRL/VIRL
+// use ("Fri, Sep 25th 5:30 pm"). IMPORTANT: start.local is already the
+// event's own wall-clock time (BC events are already Pacific) — NOT a
+// UTC timestamp needing conversion. Appending 'Z' just pins those exact
+// numbers as the calendar date/time without any real timezone shift;
+// formatting with timeZone:'UTC' then reads them back unchanged. Using
+// America/Vancouver here instead would double-shift the hour.
+function formatDateText(localStr) {
+  const date = new Date(localStr + 'Z');
   const parts = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'America/Vancouver', weekday: 'short', month: 'short', day: '2-digit',
+    timeZone: 'UTC', weekday: 'short', month: 'short', day: '2-digit',
     hour: 'numeric', minute: '2-digit', hour12: true
   }).formatToParts(date);
   const get = (type) => parts.find(p => p.type === type)?.value;
@@ -144,15 +147,8 @@ async function scrapeEventbrite() {
     return [];
   }
 
-  const placeholderIds = ORGANIZERS.filter(o => o.id.startsWith('REPLACE_WITH'));
-  if (placeholderIds.length === ORGANIZERS.length) {
-    console.warn('All organizer IDs in scrapers/eventbrite.js are still placeholders — skipping. Add real organizer IDs to enable this source.');
-    return [];
-  }
-
   const all = [];
   for (const organizer of ORGANIZERS) {
-    if (organizer.id.startsWith('REPLACE_WITH')) continue;
     try {
       const rawEvents = await fetchOrganizerEvents(organizer.id);
       const normalized = rawEvents.map(e => normalizeEvent(e, organizer));

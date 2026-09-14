@@ -560,16 +560,16 @@
     </nav>
 
     <h1>This week's family events across BC</h1>
-    <p class="sub">Filter by location to see what's happening near you. Updated daily from public library and rec centre calendars.</p>
+    <p class="sub">Filter by region to see what's happening near you. Updated daily from public library and rec centre calendars.</p>
   </div>
 
   <main>
-    <h2 class="sr-only">Browse events by location</h2>
+    <h2 class="sr-only">Browse events by region</h2>
     <div class="region-nav" id="regionNav">
-      <button class="region-btn active" data-city="all">All Locations</button>
-      <!-- City buttons are added here dynamically once events.json loads,
-           based on whatever cities actually appear in the live data —
-           see buildCityFilterButtons() below. -->
+      <button class="region-btn active" data-region="all">All BC</button>
+      <!-- Region buttons are added here dynamically once events.json loads,
+           based on whatever regions actually appear in the live data —
+           see buildRegionFilterButtons() below. -->
     </div>
 
     <div class="weekend-label" id="weekendLabel">LOADING EVENTS…</div>
@@ -618,8 +618,24 @@
   const PAGE_SIZE = 10;
 
   let allEvents = [];
-  let currentCity = 'all';
+  let currentRegion = 'all';
   let currentPage = 1;
+
+  // Display names for the region codes every scraper already emits
+  // (fvrl.js, virl.js, vpl.js, burnaby.js, eventbrite.js, etc. — none of
+  // these were changed). This is a site-side filter refinement only.
+  const REGION_DISPLAY_NAMES = {
+    'lower-mainland': 'Lower Mainland',
+    'fraser-valley': 'Fraser Valley',
+    'vancouver-island': 'Vancouver Island',
+    'okanagan': 'Okanagan / Interior',
+    'northern-bc': 'Northern BC'
+  };
+  // Preferred left-to-right order for the filter bar (roughly geographic,
+  // matching how a BC reader thinks of the province) — anything scraped
+  // with a region code not in this list still appears, just appended
+  // after these in whatever order it's first encountered.
+  const REGION_ORDER = ['lower-mainland', 'fraser-valley', 'vancouver-island', 'okanagan', 'northern-bc'];
 
   function splitDateText(dateText) {
     if (!dateText) return { day: '—', num: '—', timeRange: null };
@@ -631,12 +647,8 @@
   function normalizeEvent(e) {
     const { day, num, timeRange } = splitDateText(e.dateText);
     const meta = [timeRange, e.location].filter(Boolean);
-    // Fall back gracefully for any cached/older events.json that doesn't
-    // have a city field yet — derive something reasonable from whatever
-    // is available rather than dropping the event from every filter.
-    const city = e.city || e.regionLabel?.split('—')[0]?.trim() || e.location || 'Other';
     return {
-      city,
+      region: e.region || 'lower-mainland',
       regionLabel: e.regionLabel || e.location || '',
       day, num,
       title: e.title || 'Untitled event',
@@ -648,22 +660,26 @@
     };
   }
 
-  function getFilteredEvents(city) {
-    return city === 'all' ? allEvents : allEvents.filter(e => e.city === city);
+  function getFilteredEvents(region) {
+    return region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
   }
 
-  // Builds the "All Locations" + one button per distinct city actually
-  // present in the loaded data, sorted alphabetically. Rebuilds only
-  // when the underlying set of cities changes (not on every page click).
-  function buildCityFilterButtons() {
-    const cities = Array.from(new Set(allEvents.map(e => e.city))).sort();
+  // Builds the "All BC" + one button per distinct region actually present
+  // in the loaded data, ordered geographically rather than alphabetically
+  // (Lower Mainland, Fraser Valley, Vancouver Island, Okanagan/Interior,
+  // Northern BC, then anything unmapped). Rebuilds when data reloads.
+  function buildRegionFilterButtons() {
+    const present = Array.from(new Set(allEvents.map(e => e.region)));
+    const ordered = REGION_ORDER.filter(r => present.includes(r))
+      .concat(present.filter(r => !REGION_ORDER.includes(r)));
+
     const nav = document.getElementById('regionNav');
-    nav.innerHTML = '<button class="region-btn' + (currentCity === 'all' ? ' active' : '') + '" data-city="all">All Locations</button>';
-    cities.forEach(city => {
+    nav.innerHTML = '<button class="region-btn' + (currentRegion === 'all' ? ' active' : '') + '" data-region="all">All BC</button>';
+    ordered.forEach(region => {
       const btn = document.createElement('button');
-      btn.className = 'region-btn' + (city === currentCity ? ' active' : '');
-      btn.dataset.city = city;
-      btn.textContent = city;
+      btn.className = 'region-btn' + (region === currentRegion ? ' active' : '');
+      btn.dataset.region = region;
+      btn.textContent = REGION_DISPLAY_NAMES[region] || region;
       nav.appendChild(btn);
     });
   }
@@ -755,7 +771,7 @@
 
   function goToPage(page) {
     currentPage = page;
-    renderEvents(currentCity);
+    renderEvents(currentRegion);
     eventList.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -768,7 +784,7 @@
       emptyState.style.display = 'block';
       emptyState.textContent = allEvents.length === 0
         ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
-        : 'No listed events for this location right now — check back after the next scrape.';
+        : 'No listed events for this region right now — check back after the next scrape.';
       return;
     }
     emptyState.style.display = 'none';
@@ -800,17 +816,17 @@
       weekendLabel.textContent = 'EVENTS UNAVAILABLE';
     }
     currentPage = 1;
-    buildCityFilterButtons();
-    renderEvents(currentCity);
+    buildRegionFilterButtons();
+    renderEvents(currentRegion);
   }
 
   document.getElementById('regionNav').addEventListener('click', (e) => {
     if (!e.target.classList.contains('region-btn')) return;
     document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
     e.target.classList.add('active');
-    currentCity = e.target.dataset.city;
+    currentRegion = e.target.dataset.region;
     currentPage = 1;
-    renderEvents(currentCity);
+    renderEvents(currentRegion);
   });
 
   loadEvents();
