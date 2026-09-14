@@ -1,19 +1,7 @@
 {
-  "generatedAt": "2026-09-14T02:28:41.834Z",
+  "generatedAt": "2026-09-14T18:18:03.573Z",
   "count": 191,
   "events": [
-    {
-      "source": "fvrl",
-      "title": "Babytime",
-      "location": "Maple Ridge Public Library",
-      "city": "Maple Ridge",
-      "regionLabel": "Maple Ridge — Maple Ridge Public",
-      "region": "lower-mainland",
-      "dateText": "Mon, Sep 14th 9:30 am to 10:00 am",
-      "url": "https://www.fvrl.bc.ca/events/22459",
-      "free": true,
-      "tag": "Free"
-    },
     {
       "source": "fvrl",
       "title": "Stitch Happens - Knitting Club",
@@ -23,42 +11,6 @@
       "region": "lower-mainland",
       "dateText": "Mon, Sep 14th 9:30 am to 12:00 pm",
       "url": "https://www.fvrl.bc.ca/events/23421",
-      "free": true,
-      "tag": "Free"
-    },
-    {
-      "source": "fvrl",
-      "title": "Toddler Sensory Play: Salt Dough",
-      "location": "Muriel Arnason Library",
-      "city": "Fraser Valley",
-      "regionLabel": "Fraser Valley — Muriel Arnason",
-      "region": "lower-mainland",
-      "dateText": "Mon, Sep 14th 10:00 am to 10:30 am",
-      "url": "https://www.fvrl.bc.ca/events/22428",
-      "free": true,
-      "tag": "Free"
-    },
-    {
-      "source": "fvrl",
-      "title": "Storytime",
-      "location": "Sardis Library",
-      "city": "Chilliwack",
-      "regionLabel": "Chilliwack — Sardis",
-      "region": "fraser-valley",
-      "dateText": "Mon, Sep 14th 10:30 am to 11:00 am",
-      "url": "https://www.fvrl.bc.ca/events/22562",
-      "free": true,
-      "tag": "Free"
-    },
-    {
-      "source": "fvrl",
-      "title": "Babytime",
-      "location": "Tsawwassen Library",
-      "city": "Fraser Valley",
-      "regionLabel": "Fraser Valley — Tsawwassen",
-      "region": "lower-mainland",
-      "dateText": "Mon, Sep 14th 10:30 am to 11:00 am",
-      "url": "https://www.fvrl.bc.ca/events/24303",
       "free": true,
       "tag": "Free"
     },
@@ -323,6 +275,54 @@
       "region": "fraser-valley",
       "dateText": "Tue, Sep 15th 9:00 am to 8:00 pm",
       "url": "https://www.fvrl.bc.ca/events/24811",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Knitting Club",
+      "location": "Murrayville Library",
+      "city": "Langley",
+      "regionLabel": "Langley — Murrayville",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 15th 9:30 am to 11:30 am",
+      "url": "https://www.fvrl.bc.ca/events/21061",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Babytime",
+      "location": "Pitt Meadows Public Library",
+      "city": "Fraser Valley",
+      "regionLabel": "Fraser Valley — Pitt Meadows Public",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 15th 9:30 am to 10:00 am",
+      "url": "https://www.fvrl.bc.ca/events/21761",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Family Place Storytime",
+      "location": "Sardis Library",
+      "city": "Chilliwack",
+      "regionLabel": "Chilliwack — Sardis",
+      "region": "fraser-valley",
+      "dateText": "Tue, Sep 15th 9:30 am to 11:00 am",
+      "url": "https://www.fvrl.bc.ca/events/22595",
+      "free": true,
+      "tag": "Free"
+    },
+    {
+      "source": "fvrl",
+      "title": "Virtual Field Trip: Orange Shirt Day with the Indian Residential School Survivors Society",
+      "location": null,
+      "city": "Fraser Valley",
+      "regionLabel": "Fraser Valley — Fraser Valley Regional Library",
+      "region": "lower-mainland",
+      "dateText": "Tue, Sep 15th 9:30 am to 10:30 am",
+      "url": "https://www.fvrl.bc.ca/events/24753",
       "free": true,
       "tag": "Free"
     },
