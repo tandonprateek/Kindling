@@ -560,18 +560,16 @@
     </nav>
 
     <h1>This week's family events across BC</h1>
-    <p class="sub">Filter by region to see what's happening near you. Updated daily from public library and rec centre calendars.</p>
+    <p class="sub">Filter by location to see what's happening near you. Updated daily from public library and rec centre calendars.</p>
   </div>
 
   <main>
-    <h2 class="sr-only">Browse events by region</h2>
+    <h2 class="sr-only">Browse events by location</h2>
     <div class="region-nav" id="regionNav">
-      <button class="region-btn active" data-region="all">All BC</button>
-      <button class="region-btn" data-region="lower-mainland">Lower Mainland</button>
-      <button class="region-btn" data-region="fraser-valley">Fraser Valley</button>
-      <button class="region-btn" data-region="vancouver-island">Vancouver Island</button>
-      <button class="region-btn" data-region="okanagan">Okanagan / Interior</button>
-      <button class="region-btn" data-region="northern-bc">Northern BC</button>
+      <button class="region-btn active" data-city="all">All Locations</button>
+      <!-- City buttons are added here dynamically once events.json loads,
+           based on whatever cities actually appear in the live data —
+           see buildCityFilterButtons() below. -->
     </div>
 
     <div class="weekend-label" id="weekendLabel">LOADING EVENTS…</div>
@@ -620,7 +618,7 @@
   const PAGE_SIZE = 10;
 
   let allEvents = [];
-  let currentRegion = 'all';
+  let currentCity = 'all';
   let currentPage = 1;
 
   function splitDateText(dateText) {
@@ -633,8 +631,12 @@
   function normalizeEvent(e) {
     const { day, num, timeRange } = splitDateText(e.dateText);
     const meta = [timeRange, e.location].filter(Boolean);
+    // Fall back gracefully for any cached/older events.json that doesn't
+    // have a city field yet — derive something reasonable from whatever
+    // is available rather than dropping the event from every filter.
+    const city = e.city || e.regionLabel?.split('—')[0]?.trim() || e.location || 'Other';
     return {
-      region: e.region || 'lower-mainland',
+      city,
       regionLabel: e.regionLabel || e.location || '',
       day, num,
       title: e.title || 'Untitled event',
@@ -646,8 +648,24 @@
     };
   }
 
-  function getFilteredEvents(region) {
-    return region === 'all' ? allEvents : allEvents.filter(e => e.region === region);
+  function getFilteredEvents(city) {
+    return city === 'all' ? allEvents : allEvents.filter(e => e.city === city);
+  }
+
+  // Builds the "All Locations" + one button per distinct city actually
+  // present in the loaded data, sorted alphabetically. Rebuilds only
+  // when the underlying set of cities changes (not on every page click).
+  function buildCityFilterButtons() {
+    const cities = Array.from(new Set(allEvents.map(e => e.city))).sort();
+    const nav = document.getElementById('regionNav');
+    nav.innerHTML = '<button class="region-btn' + (currentCity === 'all' ? ' active' : '') + '" data-city="all">All Locations</button>';
+    cities.forEach(city => {
+      const btn = document.createElement('button');
+      btn.className = 'region-btn' + (city === currentCity ? ' active' : '');
+      btn.dataset.city = city;
+      btn.textContent = city;
+      nav.appendChild(btn);
+    });
   }
 
   function renderEventCards(pageItems) {
@@ -737,12 +755,12 @@
 
   function goToPage(page) {
     currentPage = page;
-    renderEvents(currentRegion);
+    renderEvents(currentCity);
     eventList.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  function renderEvents(region) {
-    const filtered = getFilteredEvents(region);
+  function renderEvents(city) {
+    const filtered = getFilteredEvents(city);
 
     if (filtered.length === 0) {
       eventList.innerHTML = '';
@@ -750,7 +768,7 @@
       emptyState.style.display = 'block';
       emptyState.textContent = allEvents.length === 0
         ? 'No live events loaded yet — the scraper may not have run, or events.json isn\'t deployed alongside this page.'
-        : 'No listed events for this region right now — check back after the next scrape.';
+        : 'No listed events for this location right now — check back after the next scrape.';
       return;
     }
     emptyState.style.display = 'none';
@@ -782,16 +800,17 @@
       weekendLabel.textContent = 'EVENTS UNAVAILABLE';
     }
     currentPage = 1;
-    renderEvents(currentRegion);
+    buildCityFilterButtons();
+    renderEvents(currentCity);
   }
 
   document.getElementById('regionNav').addEventListener('click', (e) => {
     if (!e.target.classList.contains('region-btn')) return;
     document.querySelectorAll('.region-btn').forEach(b => b.classList.remove('active'));
     e.target.classList.add('active');
-    currentRegion = e.target.dataset.region;
+    currentCity = e.target.dataset.city;
     currentPage = 1;
-    renderEvents(currentRegion);
+    renderEvents(currentCity);
   });
 
   loadEvents();

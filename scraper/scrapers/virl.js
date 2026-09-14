@@ -94,6 +94,7 @@ function icsEventsToNormalized(icsText, categoryLabel) {
       source: 'virl',
       title: item.summary || 'Untitled event',
       location,
+      city: location.replace(/\s*\([^)]*\)\s*$/, '').trim(), // strip parenthetical qualifiers like "(Mill Bay)" for a cleaner city name
       regionLabel: `Vancouver Island — ${location}`,
       region: 'vancouver-island',
       dateText,

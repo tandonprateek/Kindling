@@ -12,7 +12,7 @@ const { scrapeFvrl } = require('./scrapers/fvrl');
 const { scrapeVirl } = require('./scrapers/virl');
 const { scrapeVpl } = require('./scrapers/vpl');
 const { scrapeAll: scrapePerfectMindActiveNet } = require('./scrapers/perfectmind-activenet-template');
-const { scrapeAll: scrapeBurnaby } = require('./scrapers/burnaby-template');
+const { scrapeAll: scrapeBurnaby } = require('./scrapers/burnaby');
 
 async function main() {
   console.log('Scraping FVRL...');

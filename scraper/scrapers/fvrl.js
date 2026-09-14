@@ -31,6 +31,27 @@ const FRASER_VALLEY_BRANCHES = new Set([
   'agassiz library', 'terry fox library'
 ]);
 
+// Maps a branch name to the city it's actually in, for the site's
+// Location/City filter. Branch-to-city mapping is inherently a bit
+// manual since library branch names don't always match city names —
+// extend this as new branches show up in scraped data.
+const BRANCH_TO_CITY = [
+  { pattern: /langley|aldergrove|brookswood|murrayville|fort langley/i, city: 'Langley' },
+  { pattern: /abbotsford|clearbrook|mount lehman/i, city: 'Abbotsford' },
+  { pattern: /chilliwack|sardis|yarrow|george mackie/i, city: 'Chilliwack' },
+  { pattern: /mission/i, city: 'Mission' },
+  { pattern: /hope|dean drysdale/i, city: 'Hope' },
+  { pattern: /agassiz/i, city: 'Agassiz' },
+  { pattern: /maple ridge/i, city: 'Maple Ridge' },
+  { pattern: /delta/i, city: 'Delta' }
+];
+
+function deriveCity(location) {
+  if (!location) return 'Fraser Valley';
+  const match = BRANCH_TO_CITY.find(({ pattern }) => pattern.test(location));
+  return match ? match.city : 'Fraser Valley';
+}
+
 async function fetchPage(pageNum) {
   const url = `${BASE_URL}${EVENTS_PATH}?page=${pageNum}`;
   const res = await axios.get(url, {
@@ -76,12 +97,14 @@ function parseEventsFromHtml(html) {
     const region = location && FRASER_VALLEY_BRANCHES.has(location.toLowerCase())
       ? 'fraser-valley'
       : 'lower-mainland';
+    const city = deriveCity(location);
 
     events.push({
       source: 'fvrl',
       title,
       location,
-      regionLabel: location ? `Fraser Valley — ${location.replace(/ Library$/, '')}` : 'Fraser Valley Regional Library',
+      city,
+      regionLabel: location ? `${city} — ${location.replace(/ Library$/, '')}` : `${city} — Fraser Valley Regional Library`,
       region,
       dateText,
       url: href.startsWith('http') ? href : `${BASE_URL}${href}`,
